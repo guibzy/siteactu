@@ -11,6 +11,10 @@ class Inscription extends Module{
 		//chaque champ est ajouté par appel de fonction
 		$f=new Form("?module=Inscription&action=valide","form1");
 
+		$data=ActiviteManager::lister(); //importation des activites pour la liste déroulante
+		
+		$data2=array("" => "Sélectionnez la catégorie")+$data;
+
 		//construction sous forme de tableau
 		//chaque champ est déclaré sous la forme d'un tableau de paramètres
 		$f->build_from_array(array(
@@ -56,28 +60,7 @@ class Inscription extends Module{
 					'id'=>'metier',
 					'label'=>'Sélectionnez une activité',
 					'required'=>true,
-					'options'=>array(
-						''=>'Choisir une activité',
-						'1'=>'Agriculture, chasse, sylviculture',
-						'2'=>'Pêche, aquaculture',
-						'3'=>'Industries extractives',
-						'4'=>'Industrie manufacturière',
-						'5'=>'Construction',
-						'6'=>'Commerce',
-						'7'=>'Communication',
-						'8'=>'Hôtels et restaurants',
-						'9'=>'Transports et communications',
-						'10'=>'Activités financières',
-						'11'=>'Immobilier, location et services aux entreprises',
-						'12'=>'Administration publique',
-						'13'=>'Education',
-						'14'=>'Santé et action sociale',
-						'15'=>'Services collectifs, sociaux et personnels',
-						'16'=>'Services domestiques',
-						'17'=>'Activités extra-territoriales',
-						'18'=>'Etudiant',
-						'19'=>'Informatique',
-						'20'=>'Autres')
+					'options'=>$data2
 				),
 
 			array(

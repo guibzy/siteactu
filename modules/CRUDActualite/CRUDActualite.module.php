@@ -14,7 +14,7 @@
 
 		$data=SouscatManager::lister(); //importation des activites pour la liste déroulante
 		
-		$data2=array("" => "Sélectionnez la catégorie")+$data;
+		$data2=array("" => "Sélectionnez votre activité")+$data;
 		
 		//construction d'un formulaire manuellement
 		//chaque champ est ajouté par appel de fonction

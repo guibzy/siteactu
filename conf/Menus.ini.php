@@ -1,5 +1,9 @@
 <?php
-$menus['Exemples']=array(
+$menus['CRUDs']=array(
+	'CRUD Actualité'=>"?module=CRUDActualite"
+	);
+$menus['Inscription']="?module=Inscription";
+/*$menus['Exemples']=array(
 	'SimpleTPL'=>"?module=SimpleTemplate",
 	'Formulaire'=>"?module=Formulaire",
 	'C.R.U.D'=>"?module=CRUD",	
@@ -7,5 +11,5 @@ $menus['Exemples']=array(
 	'Download'=>"?module=DownloadFile",
 	'Ajax'=>"?module=Ajax"
 	);
-$menus['Test']="?module=TestMembre";
+$menus['Test']="?module=TestMembre";*/
 ?>
