@@ -1,0 +1,1 @@
+{include file='modules/Inscription/tpl/index.tpl'}

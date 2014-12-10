@@ -1,0 +1,16 @@
+1)Création d'un module Essai
+
+	/modules/Essai
+	/modules/Essai/tpl
+
+	/modules/Essai.module.php
+	/modules/Essai/tpl/index.tpl
+2)création d'une classe Essai
+	-qui étend la classe Module
+	-fonction action_index
+	-asigner à une variable le tableau _GET
+
+3)index.tpl
+	->afficher le contenu de ce tableau
+
+4)ouvrir dans le navigateur

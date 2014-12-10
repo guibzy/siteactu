@@ -1,0 +1,5 @@
+créer un module inscription
+créer un formulaire dedans
+(voir exemple formulaire)
+
+il faut: un login, un mdp*2, nom, prenom,@mail,valider (facultatif)
