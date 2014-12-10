@@ -18,7 +18,7 @@
 		
 		//construction d'un formulaire manuellement
 		//chaque champ est ajouté par appel de fonction
-		$f=new Form("?module=CRUDActualite&action=creer&action=valide","form1");
+		$f=new Form("?module=CRUDActualite&action=valide","form2");
 
 		//construction sous forme de tableau
 		//chaque champ est déclaré sous la forme d'un tableau de paramètres
@@ -48,7 +48,7 @@
 					'id'=>'contenu',
 					'label'=>'Contenu de l\'article',
 					'required'=>true,
-					'validation'=>'required'
+					'validation'=>'required|min-length:5'
 				),
 
 			array(
@@ -60,11 +60,11 @@
 		));
 
 		//passe le formulaire dans le template sous le nom "form"
-		$this->tpl->assign("form",$f);	
+		$this->tpl->assign("form",$f);
 		
 		//stocke la structure du formulaire dans la session sous le nom "form"
 		//pour une éventuelle réutilisation
-		$this->session->formulaire = $f;		
+		$this->session->formulaire = $f;
 
 	}
 
@@ -81,12 +81,12 @@
 		//cf sur git : class Form.class.php
 		$ok = $form->check();
 		
-		if(!$ok){ //__get('metier')!=0
+		if(!$ok){ 
 			//re-remplir le forumulaire		
 			$form->populate();
 			//choisir d'afficher le template index (plutot que "valide")
 			//c'est une solution qui permet d'avoir un seul template pour les deux actions
-			$this->set_tpl_name("index");
+			$this->set_tpl_name("creer");
 			//assigner le formulaire à la variable de template
 			$this->tpl->assign('form',$form);			
 			
@@ -107,9 +107,5 @@
 		}
 
 	}
-	
-	public function action_confirme(){
-		//pas de traitement particulier, on passe la main au template		
-	}
-	}
+}
 ?>

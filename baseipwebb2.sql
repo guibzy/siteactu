@@ -28,7 +28,7 @@ CREATE TABLE Utilisateur(
 	Mot_De_Passe char(32) NOT NULL,
 	Adresse_Mail char(40) NOT NULL,
 	Redacteur boolean,
-	DateNaissance DATE,
+	DateInscription DATE,
 	Code_Activite integer NOT NULL);
 	
 CREATE TABLE Article(

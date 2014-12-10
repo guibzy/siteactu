@@ -43,7 +43,7 @@ class Inscription extends Module{
 					'id'=>'passverif',
 					'label'=>'Vérification du mot de passe',
 					'required'=>true,
-					'validation'=>'requirec|equals-field:pass'
+					'validation'=>'required|equals-field:pass'
 				),
 		
 			array(
@@ -61,15 +61,6 @@ class Inscription extends Module{
 					'label'=>'Sélectionnez une activité',
 					'required'=>true,
 					'options'=>$data2
-				),
-
-			array(
-					'type'=>'text',
-					'name'=>'date_naissance',
-					'id'=>'date_naissance',
-					'label'=>'Date de naissance YYYY-MM-DD',
-					'required'=>false,
-					'validation'=>'max-length:10|min-length=10'
 				),
 
 			array(
@@ -101,26 +92,15 @@ class Inscription extends Module{
 		}
 		else
 		{
-		//var_dump($_POST);
-			if ($_POST['date_naissance']!=null)
-			{
-				InscriptionManager::create_user($_POST('login'),md5($_POST('pass')), $_POST('email'),$_POST('metier'),$_POST('date_naissance'));
-			}
-		 	else
-			{
-				InscriptionManager::create_user($_POST('login'),md5($_POST('pass')), $_POST('email'),$_POST('metier'));
-			}
-
+		var_dump($_POST);
+		/*Y'a une couille, en dessous !*/
+			InscriptionManager::create_user('$_POST('login')','md5($_POST('pass'))', '$_POST('email')','$_POST('metier')');
+	
 			$this->site->ajouter_message('Envoi des données pour l\'inscription.');
 			$this->site->redirect("inscription","confirme");
 			exit;
 		}
 
 	}
-	
-	public function action_confirme(){
-		//pas de traitement particulier, on passe la main au template		
-	}
-
 }
 ?>
