@@ -1,38 +1,38 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2014-12-03 10:51:40
-         compiled from "modules\CRUDActualite\tpl\index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:11006546c90c14c91c6-12945819%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.1, created on 2014-12-10 18:01:01
+         compiled from "modules\AffichageArticles\tpl\index.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:2608154887c4db3ed75-34215955%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '6be7da5e06823066b155344f601b0ee781222dd6' => 
+    '0051576424dab530e280a1c129b9a1a545dd40fa' => 
     array (
-      0 => 'modules\\CRUDActualite\\tpl\\index.tpl',
-      1 => 1417006177,
+      0 => 'modules\\AffichageArticles\\tpl\\index.tpl',
+      1 => 1418229182,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11006546c90c14c91c6-12945819',
+  'nocache_hash' => '2608154887c4db3ed75-34215955',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.1',
-  'unifunc' => 'content_546c90c154a06',
   'variables' => 
   array (
     'data' => 0,
     'donnees' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.1',
+  'unifunc' => 'content_54887c4dd09d5',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_546c90c154a06')) {function content_546c90c154a06($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_54887c4dd09d5')) {function content_54887c4dd09d5($_smarty_tpl) {?>﻿
 <h2>Liste des articles</h2>
 	<p class="text-right">
-		<a href='?module=CRUD&action=ajouter' class='btn btn-success glyphicon glyphicon-plus'> Ajouter</a>
+		<a href='?module=AffichageArticles' class='btn btn-success glyphicon glyphicon-plus'> Ajouter</a>
 	</p>
 <h3>Liste</h3>
 	<table class='table table-striped'>
 		<thead>
-			<th>ID_Article</th><th>Titre_Article</th><th>Date_Article</th><th>Actions</th>
+			<th>Numéro article</th><th>Titre_Article</th><th>Date_Article</th>
 		</thead>
 		<tbody>
 		<?php  $_smarty_tpl->tpl_vars['donnees'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['donnees']->_loop = false;
@@ -43,13 +43,13 @@ $_smarty_tpl->tpl_vars['donnees']->_loop = true;
  $_smarty_tpl->tpl_vars['ligne']->value = $_smarty_tpl->tpl_vars['donnees']->key;
 ?>
 			<tr class='table-striped'>
-				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['ID_Article'];?>
-</td>
+				<td><a href='?module=AffichageArticles&action=detail&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['ID_Article'];?>
+'> Articles numéro <?php echo $_smarty_tpl->tpl_vars['donnees']->value['ID_Article'];?>
+</a></td>
 				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['Titre_Article'];?>
 </td>
 				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['Date_Article'];?>
 </td>
-				<td></td>
 			</tr>
 		<?php }
 if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {

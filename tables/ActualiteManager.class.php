@@ -3,15 +3,29 @@
 		
 		public static function lister(){
 			
-			
 			$stmt = DB::get_instance()->prepare("SELECT * from article");
-			//echo "ça marche 1";
 			
 			$stmt->execute();
-			
-			//echo " ça marche 2";
 			$res_req=array();
 			$res_req=$stmt->fetchAll();		
+			return $res_req;
+			
+		}
+		
+		public static function listerParSousCat($souscat){
+			$stmt = DB::get_instance()->prepare("SELECT * from article WHERE ID_SousCategorie=?");
+			$stmt->execute(array($souscat));
+			$res_req=array();
+			$res_req=$stmt->fetchAll();		
+			return $res_req;
+			
+		}
+		
+		public static function chercherParId($id){
+			$stmt = DB::get_instance()->prepare("SELECT * from article WHERE ID_Article=?");
+			$stmt->execute(array($id));
+			$res_req=array();
+			$res_req=$stmt->fetch();		
 			return $res_req;
 			
 		}
