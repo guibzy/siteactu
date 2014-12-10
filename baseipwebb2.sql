@@ -35,7 +35,7 @@ CREATE TABLE Article(
 	ID_Article integer NOT NULL AUTO_Increment PRIMARY KEY,
 	Titre_Article varchar(100),
 	Date_Article DATE,
-	Contenu_Article varchar(65534),
+	Contenu_Article varchar(50000),
 	Note_Redacteur float,
 	ID_Utilisateur integer,
 	ID_SousCategorie integer);
@@ -43,7 +43,7 @@ CREATE TABLE Article(
 	
 CREATE TABLE Commentaire(
 	ID_Commentaire integer NOT NULL AUTO_Increment PRIMARY KEY,
-	Contenu_Commentaire varchar(65534),
+	Contenu_Commentaire varchar(5000),
 	Date_Commentaire DATE,
 	ID_Utilisateur integer,
 	ID_Article integer);
