@@ -94,7 +94,7 @@ class Inscription extends Module{
 		{
 		var_dump($_POST);
 		/*Y'a une couille, en dessous !*/
-			InscriptionManager::create_user('$_POST('login')','md5($_POST('pass'))', '$_POST('email')','$_POST('metier')');
+			InscriptionManager::create_user($_POST('login'),md5($_POST('pass')), $_POST('email'),$_POST('metier'));
 	
 			$this->site->ajouter_message('Envoi des données pour l\'inscription.');
 			$this->site->redirect("inscription","confirme");
