@@ -3,7 +3,7 @@
 	{
 		public function action_index()
 		{
-			if($this->user->redacteur==1)
+			if($this->session->user->redacteur==1)
 			{
 				$data=array();
 				$data=ActualiteManager::lister();
@@ -17,7 +17,7 @@
 		}
 		
 		public function action_creer(){
-			if($this->user->redacteur==1){
+			if($this->session->user->redacteur==1){
 				$this->set_title("Création article");		
 
 				$data=SouscatManager::lister(); //importation des activites pour la liste déroulante
@@ -81,17 +81,14 @@
 	}
 
 	public function action_valide(){
-		if($this->user->redacteur==1)
+		if($this->session->user->redacteur==1)
 		{
 			$this->set_title("Création d'un article");
 			$err=false;
+			
 			//on récupère la structure du formulaire précédemment stocké dans la session
 			$form=$this->session->formulaire;
 			
-			//attention, suite à certaines remarques vues en TD, 
-			//le nom de la fonction a changé (valid-->check)
-			//retourne true si OK, false sinon
-			//cf sur git : class Form.class.php
 			$ok = $form->check();
 			
 			if(!$ok){ 
@@ -105,17 +102,19 @@
 				
 			}else{
 
+				$actu = new Actualite();
+				$actu->Titre_Article=$this->req->titre;
+				$actu->Date_Article=date("Y-m-d");
+				$actu->Contenu_Article=$this->req->contenu;
+				$actu->ID_Utilisateur=$this->session->user->id;
+				$actu->ID_SousCategorie=$_GET['id'];
+				ActualiteManager::creer($actu);
 				
 				//rediriger vers une autre page
 				$this->site->ajouter_message("Création confirmée");	
-				$this->site->redirect("CRUDActualite","confirme");
+				$this->site->redirect("CRUDActualite");
 				//ne pas laisser le framework continuer le traitement 
 				exit;
-				
-				//on pourrait choisir d'afficher simplement un autre template
-				//mais on ne doit pas rester sur la page dans laquelle un traitement de BD
-				//a eu lieu (INSERT, DELETE, UPDATE...)
-				
 				
 			}
 		}

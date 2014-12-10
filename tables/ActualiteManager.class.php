@@ -80,12 +80,18 @@
 		}
 		
 		public static function editerDonnees($id_article){
-		
+			
 		
 		}
 		
-		public static function creer(){
-		
+		public static function creer($actu){
+			$sql="INSERT into article (Titre_Article, Date_Article, Contenu_Article, ID_Utilisateur, ID_SousCategorie) VALUES(?,?,?,?,?)";
+			$stmt=DB::get_instance()->prepare($sql);
+			$stmt->execute(array($actu->Titre_Article,
+								$actu->Date_Article, 
+								$actu->Contenu_Article,
+								$actu->ID_Utilisateur,
+								$actu->ID_SousCategorie));
 		
 		}
 		

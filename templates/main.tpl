@@ -56,15 +56,15 @@
 			<li><a href="?module={$module}">{$module}</a></li>
 			<li class="active">{$titre}</li>
 		</ol>
-
+	
 		{if $messages}
 			<div class="bs-callout bs-callout-danger">
-				<h4>Zone de messages transmis par <code>Site::ajouter_message():</code></h4>
+			<!-- <h4>Zone de messages transmis par <code>Site::ajouter_message():</code></h4> -->
 				{$messages}
 			</div>
 		{/if}
 
-
+	
 		<div id='module'>
 			{$bloc_contenu}
 		</div>			

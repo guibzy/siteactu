@@ -23,7 +23,8 @@ class Connexion extends Module{
 				$this->site->ajouter_message("Mauvais identifiants et/ou mot de passe ",ALERTE);
 			}
 		}
-		$this->site->ajouter_message("Mauvais identifiants et/ou mot de passe ",ALERTE);
+		else $this->site->ajouter_message("Mauvais identifiants et/ou mot de passe ",ALERTE);
+		
 		$this->site->redirect("index");
 	}
 

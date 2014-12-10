@@ -60,7 +60,7 @@ class MembreManager{
 				return false;
 			}
 			
-			$m= $res->fetch();			
+			$m=$res->fetch();			
 			$membre=new Membre();
 			$membre->id = $m[0];			
 			$membre->login=$m[1];
