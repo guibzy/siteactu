@@ -21,11 +21,11 @@ class MembreManager{
 
 		public static function creer($m){
 			
-			$sql = "INSERT INTO utilisateur VALUES ('',?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO utilisateur VALUES (null,?, ?, ?, ?, ?, ?)";
 			$res = DB::get_instance()->prepare($sql); //design patter singleton
-			$res -> execute(array($m->login, $m->nom, $m->prenom,$m->mail,$m->pass));
+			$res -> execute(array($m->login, $m->pass, $m->mail,$m->redacteur,$m->date_ne,$m->code_act));
 			//$m->id=DB::get_instance()->lastInsertId();
-			return $m;
+			return $res;
 			
 		}
 
