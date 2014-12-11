@@ -1,4 +1,30 @@
-{literal}
+<?php /* Smarty version Smarty-3.1.1, created on 2014-12-11 13:09:04
+         compiled from "modules\CRUDActualite\tpl\index.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:31285548956cc823d84-82999459%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '6be7da5e06823066b155344f601b0ee781222dd6' => 
+    array (
+      0 => 'modules\\CRUDActualite\\tpl\\index.tpl',
+      1 => 1418299739,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '31285548956cc823d84-82999459',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.1',
+  'unifunc' => 'content_548956cca3ef0',
+  'variables' => 
+  array (
+    'data' => 0,
+    'donnees' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_548956cca3ef0')) {function content_548956cca3ef0($_smarty_tpl) {?>
 <script>
 //demande confirmation sur click d'un bouton supprimer
 $(function() {
@@ -24,7 +50,7 @@ $(function() {
 	
 });
 </script>
-{/literal}
+
 
 <h2>Liste des articles</h2>
 	<p class="text-right">
@@ -36,35 +62,50 @@ $(function() {
 			<th>Numéro article</th><th>Titre de l'article</th><th>Date de l'article</th><th>Actions</th>
 		</thead>
 		<tbody>
-		{foreach $data as $ligne=>$donnees}
+		<?php  $_smarty_tpl->tpl_vars['donnees'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['donnees']->_loop = false;
+ $_smarty_tpl->tpl_vars['ligne'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['data']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['donnees']->key => $_smarty_tpl->tpl_vars['donnees']->value){
+$_smarty_tpl->tpl_vars['donnees']->_loop = true;
+ $_smarty_tpl->tpl_vars['ligne']->value = $_smarty_tpl->tpl_vars['donnees']->key;
+?>
 			<tr class='table-striped'>
-				<td>{$donnees.ID_Article}</td>
-				<td>{$donnees.Titre_Article}</td>
-				<td>{$donnees.Date_Article}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['ID_Article'];?>
+</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['Titre_Article'];?>
+</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['Date_Article'];?>
+</td>
 				<td>
 					<!--voir le détail-->
 					<a class='glyphicon glyphicon-search' 
 						data-toggle="modal" 
 						data-target="#inclusionModal" 
-						href='?module=CRUDActualite&action=detail&id={$donnees.ID_Article}&displayModuleInDialog=1'>
+						href='?module=CRUDActualite&action=detail&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['ID_Article'];?>
+&displayModuleInDialog=1'>
 					</a> 
 					
 					<!--modifier-->
 					<a class='glyphicon glyphicon-pencil' 
 						data-toggle="modal" 
 						data-target="#inclusionModal"
-						href='?module=CRUDActualite&action=modifier&id={$donnees.ID_Article}&displayModuleInDialog=1'>
+						href='?module=CRUDActualite&action=modifier&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['ID_Article'];?>
+&displayModuleInDialog=1'>
 					</a>
 
 					<!--supprimer-->
 					<!--supprimer-->
-					<a class='glyphicon glyphicon-remove' title='{$donnees.Titre_Article}' 
-						href='?module=CRUDActualite&action=supprimer&id={$donnees.ID_Article}'></a>	
+					<a class='glyphicon glyphicon-remove' title='<?php echo $_smarty_tpl->tpl_vars['donnees']->value['Titre_Article'];?>
+' 
+						href='?module=CRUDActualite&action=supprimer&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['ID_Article'];?>
+'></a>	
 				</td>
 			</tr>
-		{foreachelse}	
+		<?php }
+if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {
+?>	
 			<tr><td colspan='3'>Aucune donnée</td></tr>
-		{/foreach}
+		<?php } ?>
 		</tbody>
 	</table>
 	
@@ -102,4 +143,4 @@ $(function() {
 	    Contenu vide remplacé par le module...
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div>
+</div><?php }} ?>

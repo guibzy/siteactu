@@ -65,8 +65,7 @@ class CRUD extends Module{
 		
 		//passe ces informations dans le template
 		
-		$this->tpl->assign("id",$id);
-		$this->tpl->assign("reference",$ref);		
+		$this->tpl->assign("id",$id);		
 		
 		
 	}

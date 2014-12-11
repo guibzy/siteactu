@@ -124,5 +124,33 @@
 			}
 
 	}
+	
+	public function action_detail()
+		{
+			if($this->session->user->redacteur==1)
+			{
+				//$id=$_GET['id'];
+				$id = $this->req->id;
+				$data=array();
+				$data=ActualiteManager::chercherParId($id);
+				$this->set_title($data['Titre_Article']);
+				$this->tpl->assign('data',$data);
+				
+				
+			}
+			else{
+				$this->site->ajouter_message("Accès administrateur");	
+				$this->site->redirect("index");
+			}
+			
+		}
+		
+		public function action_modifier()
+		{
+		}
+		
+		public function action_supprimer()
+		{
+		}
 }
 ?>
