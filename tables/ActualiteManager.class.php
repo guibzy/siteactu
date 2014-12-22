@@ -73,7 +73,7 @@
 		}
 		
 		public static function supprimer($id_article){
-			$sql="DELETE * from article WHERE ID_Article=:id";
+			$sql="DELETE from article WHERE ID_Article=:id";
 			$stmt=DB::get_instance()->prepare($sql);
 			$stmt->bindParam(':id', $id_article);
 			$stmt->execute();
@@ -87,7 +87,6 @@
 			$stmt->execute(array($actu->Titre_Article, $actu->Date_Article
 								, $actu->Contenu_Article, $actu->ID_Utilisateur
 								, $actu->ID_SousCategorie, $actu->ID_Article));
-			var_dump($actu);
 		}
 		
 		public static function creer($actu){

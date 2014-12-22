@@ -262,6 +262,16 @@
 		
 		public function action_supprimer()
 		{
+			if($this->session->user->redacteur==1)
+			{
+				ActualiteManager::supprimer($this->req->id);
+				$this->site->ajouter_message("Article supprimé");	
+				$this->site->redirect("CRUDActualite","index");
+			}
+			else{
+				$this->site->ajouter_message("Accès administrateur");	
+				$this->site->redirect("index");
+			}
 		}
 }
 ?>
