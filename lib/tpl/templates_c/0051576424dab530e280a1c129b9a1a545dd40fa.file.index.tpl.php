@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2014-12-22 14:07:30
+<?php /* Smarty version Smarty-3.1.1, created on 2014-12-22 17:38:19
          compiled from "modules\AffichageArticles\tpl\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:136595489570be7acb3-20399611%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0051576424dab530e280a1c129b9a1a545dd40fa' => 
     array (
       0 => 'modules\\AffichageArticles\\tpl\\index.tpl',
-      1 => 1419253648,
+      1 => 1419265008,
       2 => 'file',
     ),
   ),
@@ -55,27 +55,23 @@ if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {
 		<?php } ?>
 		</tbody>
 	</table>
-	
-	
-	
-	
-	
+
 	
 <!-- boite de dialogue confirmation -->
 <!-- exemple du site getbootstrap -->
-<div class="modal fade" ID_Article="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hID_Articleden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hID_Articleden="true">&times;</button>
-        <h4 class="modal-title" ID_Article="myModalLabel">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
       </div>
       <div class="modal-body">
         Êtes vous sûr de vouloir supprimer l'enregistrement ? 
       </div>
       <div class="modal-footer">
         <a href="#" class="btn btn-default" data-dismiss="modal">Fermer</a>
-        <a href="#" class="btn btn-primary" ID_Article='go'>Confirmer</a>
+        <a href="#" class="btn btn-primary" id='go'>Confirmer</a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -84,10 +80,10 @@ if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {
 	
 	
 <!-- boite de dialogue inclusion-->
-<div class="modal fade" ID_Article="inclusionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hID_Articleden="true">
+<div class="modal fade" id="inclusionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-	    Contenu vID_Articlee remplacé par le module...
+	    Contenu vide remplacé par le module...
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><?php }} ?>

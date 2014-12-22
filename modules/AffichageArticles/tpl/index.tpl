@@ -17,27 +17,23 @@
 		{/foreach}
 		</tbody>
 	</table>
-	
-	
-	
-	
-	
+
 	
 <!-- boite de dialogue confirmation -->
 <!-- exemple du site getbootstrap -->
-<div class="modal fade" ID_Article="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hID_Articleden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hID_Articleden="true">&times;</button>
-        <h4 class="modal-title" ID_Article="myModalLabel">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
       </div>
       <div class="modal-body">
         Êtes vous sûr de vouloir supprimer l'enregistrement ? 
       </div>
       <div class="modal-footer">
         <a href="#" class="btn btn-default" data-dismiss="modal">Fermer</a>
-        <a href="#" class="btn btn-primary" ID_Article='go'>Confirmer</a>
+        <a href="#" class="btn btn-primary" id='go'>Confirmer</a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -46,10 +42,10 @@
 	
 	
 <!-- boite de dialogue inclusion-->
-<div class="modal fade" ID_Article="inclusionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hID_Articleden="true">
+<div class="modal fade" id="inclusionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-	    Contenu vID_Articlee remplacé par le module...
+	    Contenu vide remplacé par le module...
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
