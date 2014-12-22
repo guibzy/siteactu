@@ -9,7 +9,19 @@
 						data-target="#inclusionModal"
 						href='?module=AffichageArticles&action=comment&id_art={$data['ID_Article']}&id_user={$user->id}&displayModuleInDialog=1'>
 Commenter</a>
-	
+
+<h3> Commentaires :</h3>
+{if $com eq false}
+<p>Aucun commentaire pour le moment</p>
+{else}
+	{foreach $com as $ligne=>$donnee}
+	<div class='jumbotron'>
+	<p>{$donnee['Contenu_Commentaire']}</p>
+	Ecrit le <b>{$donnee['Date_Commentaire']}</b> par <b>{$donnee['Pseudo_Utilisateur']}</b>
+	</div>
+	{/foreach}
+{/if}
+
 <!-- boite de dialogue confirmation -->
 <!-- exemple du site getbootstrap -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

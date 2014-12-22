@@ -13,14 +13,17 @@ class AffichageArticles extends Module
 		public function action_detail()
 		{
 			$id=$this->req->id;
-			$data=array();
+			
 			$data=ActualiteManager::chercherParId($id);
 			$masouscat=SouscatManager::chercherParId($data['ID_SousCategorie']);
 			
 			$this->set_title($masouscat['Nom_SousCategorie']);
 			$user=MembreManager::chercherParID($data['ID_Utilisateur']);
+			
+			$com=CommentaireManager::listerParIdArticle($id);
 			$this->tpl->assign('data',$data);
 			$this->tpl->assign('user',$user);
+			$this->tpl->assign('com',$com);
 		}
 		
 		public function action_comment()

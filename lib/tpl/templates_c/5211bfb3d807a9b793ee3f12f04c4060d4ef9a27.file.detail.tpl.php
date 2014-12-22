@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2014-12-22 17:33:43
+<?php /* Smarty version Smarty-3.1.1, created on 2014-12-22 18:38:26
          compiled from "modules\AffichageArticles\tpl\detail.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1684454895711cff621-72329647%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5211bfb3d807a9b793ee3f12f04c4060d4ef9a27' => 
     array (
       0 => 'modules\\AffichageArticles\\tpl\\detail.tpl',
-      1 => 1419266020,
+      1 => 1419269904,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'data' => 0,
     'user' => 0,
+    'com' => 0,
+    'donnee' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -42,7 +44,28 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 &id_user=<?php echo $_smarty_tpl->tpl_vars['user']->value->id;?>
 &displayModuleInDialog=1'>
 Commenter</a>
-	
+
+<h3> Commentaires :</h3>
+<?php if ($_smarty_tpl->tpl_vars['com']->value==false){?>
+<p>Aucun commentaire pour le moment</p>
+<?php }else{ ?>
+	<?php  $_smarty_tpl->tpl_vars['donnee'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['donnee']->_loop = false;
+ $_smarty_tpl->tpl_vars['ligne'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['com']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['donnee']->key => $_smarty_tpl->tpl_vars['donnee']->value){
+$_smarty_tpl->tpl_vars['donnee']->_loop = true;
+ $_smarty_tpl->tpl_vars['ligne']->value = $_smarty_tpl->tpl_vars['donnee']->key;
+?>
+	<div class='jumbotron'>
+	<p><?php echo $_smarty_tpl->tpl_vars['donnee']->value['Contenu_Commentaire'];?>
+</p>
+	Ecrit le <b><?php echo $_smarty_tpl->tpl_vars['donnee']->value['Date_Commentaire'];?>
+</b> par <b><?php echo $_smarty_tpl->tpl_vars['donnee']->value['Pseudo_Utilisateur'];?>
+</b>
+	</div>
+	<?php } ?>
+<?php }?>
+
 <!-- boite de dialogue confirmation -->
 <!-- exemple du site getbootstrap -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

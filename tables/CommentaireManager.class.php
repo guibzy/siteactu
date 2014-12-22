@@ -9,6 +9,16 @@
 			return $res;			
 		}
 	
-	
+		public static function listerParIdArticle($id_art){
+			$stmt = DB::get_instance()->prepare("SELECT * from commentaire, utilisateur WHERE commentaire.ID_Utilisateur = utilisateur.ID_Utilisateur AND commentaire.ID_Article=? ORDER by commentaire.Date_Commentaire DESC");
+			$stmt->execute(array($id_art));
+			if($stmt->rowCount()==0){
+				return false;
+			}
+			$res_req=array();
+			$res_req=$stmt->fetchAll();		
+			return $res_req;
+			
+		}
 	}
 ?>
