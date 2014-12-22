@@ -82,21 +82,23 @@
 		public static function modifier($actu){
 			$sql="UPDATE article SET Titre_Article=?, Date_Article=?,
 					Contenu_Article=?, ID_Utilisateur=?, 
-					ID_SousCategorie=? WHERE ID_Article=?";
+					ID_SousCategorie=?, Note_Redacteur=? WHERE ID_Article=?";
 			$stmt=DB::get_instance()->prepare($sql);
 			$stmt->execute(array($actu->Titre_Article, $actu->Date_Article
 								, $actu->Contenu_Article, $actu->ID_Utilisateur
-								, $actu->ID_SousCategorie, $actu->ID_Article));
+								, $actu->ID_SousCategorie, $actu->Note_Redacteur
+								, $actu->ID_Article));
 		}
 		
 		public static function creer($actu){
-			$sql="INSERT into article (Titre_Article, Date_Article, Contenu_Article, ID_Utilisateur, ID_SousCategorie) VALUES(?,?,?,?,?)";
+			$sql="INSERT into article (Titre_Article, Date_Article, Contenu_Article, ID_Utilisateur, ID_SousCategorie, Note_Redacteur) VALUES(?,?,?,?,?,?)";
 			$stmt=DB::get_instance()->prepare($sql);
 			$stmt->execute(array($actu->Titre_Article,
 								$actu->Date_Article, 
 								$actu->Contenu_Article,
 								$actu->ID_Utilisateur,
-								$actu->ID_SousCategorie));
+								$actu->ID_SousCategorie,
+								$actu->Note_Redacteur));
 		
 		}
 		

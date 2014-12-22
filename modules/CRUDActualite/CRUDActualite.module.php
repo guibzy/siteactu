@@ -58,7 +58,13 @@
 							'required'=>true,
 							'validation'=>'required|min-length:5'
 						),
-
+					array(
+							'type'=>'select',
+							'name'=>'note',
+							'id'=>'note',
+							'label'=>'Note/10 éventuelle du produit',
+							'options'=>array(""=>"Votre note",1=>"1",2=>"2",3=>"3",4=>"4",5=>"5",6=>"6",7=>"7",8=>"8",9=>"9",10=>"10")
+						),
 					array(
 							'type'=>'submit',
 							'name'=>'sub',
@@ -108,6 +114,11 @@
 				$actu->Contenu_Article=$this->req->contenu;
 				$actu->ID_Utilisateur=$this->session->user->id;
 				$actu->ID_SousCategorie=$this->req->souscat;
+				if($this->req->note!=""){
+					$actu->Note_Redacteur=$this->req->note;
+				}else{
+					$actu->Note_Redacteur=null;
+				}
 				ActualiteManager::creer($actu);
 				
 				//rediriger vers une autre page
@@ -192,6 +203,15 @@
 							'value'=>$monActu['Contenu_Article'],
 							'validation'=>'required|min-length:5'
 						),
+						
+						array(
+							'type'=>'select',
+							'name'=>'note',
+							'id'=>'note',
+							'label'=>'Note/10 éventuelle du produit',
+							'value'=>$monActu['Note_Redacteur'],
+							'options'=>array(""=>"Votre note",1=>"1",2=>"2",3=>"3",4=>"4",5=>"5",6=>"6",7=>"7",8=>"8",9=>"9",10=>"10")
+						),
 
 					array(
 							'type'=>'submit',
@@ -243,6 +263,11 @@
 				$actu->Contenu_Article=$this->req->contenu;
 				$actu->ID_Utilisateur=$this->session->user->id;
 				$actu->ID_SousCategorie=$this->req->souscat;
+				if($this->req->note!=""){
+					$actu->Note_Redacteur=$this->req->note;
+				}else{
+					$actu->Note_Redacteur=null;
+				}
 				ActualiteManager::modifier($actu);
 				
 				//rediriger vers une autre page
