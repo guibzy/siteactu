@@ -7,7 +7,7 @@
 <a class='btn btn-success glyphicon glyphicon' 
 						data-toggle="modal" 
 						data-target="#inclusionModal"
-						href='?module=AffichageArticles&action=comment&id_art={$data['ID_Article']}&id_user={$user->id}&displayModuleInDialog=1'>
+						href='?module=AffichageArticles&action=comment&id_art={$data['ID_Article']}&displayModuleInDialog=1'>
 Commenter</a>
 
 <h3> Commentaires :</h3>

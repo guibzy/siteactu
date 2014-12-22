@@ -34,7 +34,7 @@ class AffichageArticles extends Module
 
 				//construction d'un formulaire manuellement
 				//chaque champ est ajouté par appel de fonction
-				$f=new Form("?module=AffichageArticles&action=commentvalide&id_art=".$this->req->id_art."&id_user=".$this->req->id_user,"form2");
+				$f=new Form("?module=AffichageArticles&action=commentvalide&id_art=".$this->req->id_art,"form2");
 
 				//construction sous forme de tableau
 				//chaque champ est déclaré sous la forme d'un tableau de paramètres
@@ -45,7 +45,7 @@ class AffichageArticles extends Module
 							'id'=>'contenu',
 							'label'=>'Votre commentaire',
 							'required'=>true,
-							'validation'=>'required|min-length:5'
+							'validation'=>'required|min-length:1'
 						),
 					array(
 							'type'=>'submit',
@@ -92,7 +92,7 @@ class AffichageArticles extends Module
 			}else{
 
 				$com = new Commentaire(null,$this->req->contenu,date("Y-m-d")
-										,$this->req->id_user,$this->req->id_art);
+										,$this->session->user->id,$this->req->id_art);
 				CommentaireManager::creer($com);
 				
 				//rediriger vers une autre page
