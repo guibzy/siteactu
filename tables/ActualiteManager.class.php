@@ -21,6 +21,15 @@
 			
 		}
 		
+		public static function listerParCat($cat){
+			$stmt = DB::get_instance()->prepare("SELECT * from article,souscategorie WHERE article.ID_SousCategorie = souscategorie.ID_SousCategorie AND souscategorie.ID_Categorie=?");
+			$stmt->execute(array($cat));
+			$res_req=array();
+			$res_req=$stmt->fetchAll();		
+			return $res_req;
+			
+		}
+		
 		public static function chercherParId($id){
 			$stmt = DB::get_instance()->prepare("SELECT * from article WHERE ID_Article=?");
 			$stmt->execute(array($id));

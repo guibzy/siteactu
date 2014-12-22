@@ -5,6 +5,7 @@
 		{
 			if($this->session->user->redacteur==1)
 			{
+				$this->set_title("Administration des articles");
 				$data=array();
 				$data=ActualiteManager::lister();
 				$this->tpl->assign('data',$data);

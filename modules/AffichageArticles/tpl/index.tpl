@@ -1,9 +1,6 @@
 ﻿
 <h2>Liste des articles</h2>
-	<p class="text-right">
-		<a href='?module=AffichageArticles' class='btn btn-success glyphicon glyphicon-plus'> Ajouter</a>
-	</p>
-<h3>Liste</h3>
+
 	<table class='table table-striped'>
 		<thead>
 			<th>Numéro article</th><th>Titre_Article</th><th>Date_Article</th>

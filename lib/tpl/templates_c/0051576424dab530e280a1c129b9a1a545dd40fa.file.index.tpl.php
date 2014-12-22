@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2014-12-11 09:34:19
+<?php /* Smarty version Smarty-3.1.1, created on 2014-12-22 14:07:30
          compiled from "modules\AffichageArticles\tpl\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:136595489570be7acb3-20399611%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0051576424dab530e280a1c129b9a1a545dd40fa' => 
     array (
       0 => 'modules\\AffichageArticles\\tpl\\index.tpl',
-      1 => 1418229182,
+      1 => 1419253648,
       2 => 'file',
     ),
   ),
@@ -15,21 +15,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.1',
+  'unifunc' => 'content_5489570c15f5b',
   'variables' => 
   array (
     'data' => 0,
     'donnees' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.1',
-  'unifunc' => 'content_5489570c15f5b',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5489570c15f5b')) {function content_5489570c15f5b($_smarty_tpl) {?>﻿
 <h2>Liste des articles</h2>
-	<p class="text-right">
-		<a href='?module=AffichageArticles' class='btn btn-success glyphicon glyphicon-plus'> Ajouter</a>
-	</p>
-<h3>Liste</h3>
+
 	<table class='table table-striped'>
 		<thead>
 			<th>Numéro article</th><th>Titre_Article</th><th>Date_Article</th>
