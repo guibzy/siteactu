@@ -15,8 +15,12 @@ class AffichageArticles extends Module
 			$id=$this->req->id;
 			$data=array();
 			$data=ActualiteManager::chercherParId($id);
-			$this->set_title($data['Titre_Article']);
+			$masouscat=SouscatManager::chercherParId($data['ID_SousCategorie']);
+			
+			$this->set_title($masouscat['Nom_SousCategorie']);
+			$user=MembreManager::chercherParID($data['ID_Utilisateur']);
 			$this->tpl->assign('data',$data);
+			$this->tpl->assign('user',$user);
 		}
 	}
 ?>

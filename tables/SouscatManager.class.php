@@ -15,6 +15,12 @@
 			}
 			return $tab_final;
 		}
-		
+	
+		public static function chercherParId($id){
+			$stmt = DB::get_instance()->prepare("SELECT ID_SousCategorie,Nom_SousCategorie from souscategorie where ID_SousCategorie=?");
+			$stmt->execute(array($id));
+			$res_req=$stmt->fetch();
+			return $res_req;
+		}	
 	}
 ?>

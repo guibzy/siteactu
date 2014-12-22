@@ -31,7 +31,7 @@ class MembreManager{
 
 
 		public static function chercherParID($id){
-			$sql="SELECT * from Membre WHERE id=?";
+			$sql="SELECT * from utilisateur WHERE ID_Utilisateur=?";
 			$res=DB::get_instance()->prepare($sql);
 			$res->execute(array($id));
 			//gérer les erreurs éventuelles
@@ -40,12 +40,13 @@ class MembreManager{
 			}
 			$m= $res->fetch();			
 			$membre=new Membre();
-			$membre->id=$m[0];
-			$membre->login=$m[1];
-			$membre->nom= $m[2];
-			$membre->prenom=$m[3];
-			$membre->mail=$m[4];
-			$membre->pass=$m[5];											
+			$membre->id=$m['ID_Utilisateur'];
+			$membre->login=$m['Pseudo_Utilisateur'];
+			$membre->mail=$m['Adresse_Mail'];
+			$membre->pass=$m['Mot_De_Passe'];
+			$membre->redacteur=$m['Redacteur'];
+			$membre->date_ne=$m['DateNaissance'];
+			$membre->code_act=$m['Code_Activite'];
 			return $membre;
 		}
 

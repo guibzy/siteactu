@@ -1,4 +1,3 @@
-<div class='jumbotron'>
 <p>{$data['Contenu_Article']}</p>
-<p>Ecrit le {$data['Date_Article']}</p>
-</div>
+{if $data['Note_Redacteur'] eq null}{else} <b>Note du produit :</b> {$data['Note_Redacteur']} {/if}
+</br><p>Ecrit le <b>{$data['Date_Article']}</b> par <b>{$user->login}</b></p>
