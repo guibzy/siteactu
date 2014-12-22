@@ -22,7 +22,7 @@
 
 				$data=SouscatManager::lister(); //importation des activites pour la liste déroulante
 				
-				$data2=array("" => "Sélectionnez votre activité")+$data;
+				$data2=array("" => "Sélectionnez la catégorie")+$data;
 				
 				//construction d'un formulaire manuellement
 				//chaque champ est ajouté par appel de fonction
@@ -107,7 +107,7 @@
 				$actu->Date_Article=date("Y-m-d");
 				$actu->Contenu_Article=$this->req->contenu;
 				$actu->ID_Utilisateur=$this->session->user->id;
-				$actu->ID_SousCategorie=$_GET['id'];
+				$actu->ID_SousCategorie=$this->req->souscat;
 				ActualiteManager::creer($actu);
 				
 				//rediriger vers une autre page
@@ -129,7 +129,6 @@
 		{
 			if($this->session->user->redacteur==1)
 			{
-				//$id=$_GET['id'];
 				$id = $this->req->id;
 				$data=array();
 				$data=ActualiteManager::chercherParId($id);
@@ -147,7 +146,119 @@
 		
 		public function action_modifier()
 		{
+			if($this->session->user->redacteur==1){
+				$this->set_title("Modification article");		
+
+				$data=SouscatManager::lister(); //importation des activites pour la liste déroulante
+				
+				$data2=array("" => "Modifier la catégorie")+$data;
+				
+				//construction d'un formulaire manuellement
+				//chaque champ est ajouté par appel de fonction
+				$f=new Form("?module=CRUDActualite&action=validemodif&id=".$this->req->id,"form2");
+				
+				$monActu=ActualiteManager::chercherParId($this->req->id);
+				
+				
+				//construction sous forme de tableau
+				//chaque champ est déclaré sous la forme d'un tableau de paramètres
+				$f->build_from_array(array(
+					array(
+							'type'=>'text',
+							'name'=>'titre',
+							'id'=>'titre',
+							'label'=>'Titre de l\'article',
+							'required'=>true,
+							'validation'=>'required',
+							'value'=>$monActu['Titre_Article']
+						),
+						
+					array(
+							'type'=>'select',
+							'name'=>'souscat',
+							'id'=>'souscat',
+							'label'=>'Sélectionnez une catégorie',
+							'required'=>true,
+							'value'=>$monActu['ID_SousCategorie'],
+							'options'=>$data2
+											
+						),
+					array(
+							'type'=>'textarea',
+							'name'=>'contenu',
+							'id'=>'contenu',
+							'label'=>'Contenu de l\'article',
+							'required'=>true,
+							'value'=>$monActu['Contenu_Article'],
+							'validation'=>'required|min-length:5'
+						),
+
+					array(
+							'type'=>'submit',
+							'name'=>'sub',
+							'id'=>'sub',
+							'value'=>'Valider'
+						)
+				));
+
+				//passe le formulaire dans le template sous le nom "form"
+				$this->tpl->assign("form",$f);
+				
+				//stocke la structure du formulaire dans la session sous le nom "form"
+				//pour une éventuelle réutilisation
+				$this->session->formulaire = $f;
+			}
+			else{
+				$this->site->ajouter_message("Accès administrateur");	
+				$this->site->redirect("index");
+			}
 		}
+		
+	public function action_validemodif(){
+		if($this->session->user->redacteur==1)
+		{
+			$this->set_title("Modification d'un article");
+			$err=false;
+			
+			//on récupère la structure du formulaire précédemment stocké dans la session
+			$form=$this->session->formulaire;
+			
+			$ok = $form->check();
+			
+			if(!$ok){ 
+				//re-remplir le forumulaire		
+				$form->populate();
+				//choisir d'afficher le template index (plutot que "valide")
+				//c'est une solution qui permet d'avoir un seul template pour les deux actions
+				$this->set_tpl_name("creer");
+				//assigner le formulaire à la variable de template
+				$this->tpl->assign('form',$form);			
+				
+			}else{
+
+				$actu = new Actualite();
+				$actu->ID_Article=$this->req->id;
+				$actu->Titre_Article=$this->req->titre;
+				$actu->Date_Article=date("Y-m-d");
+				$actu->Contenu_Article=$this->req->contenu;
+				$actu->ID_Utilisateur=$this->session->user->id;
+				$actu->ID_SousCategorie=$this->req->souscat;
+				ActualiteManager::modifier($actu);
+				
+				//rediriger vers une autre page
+				$this->site->ajouter_message("Modifications effectuées",var_dump($actu));	
+				$this->site->redirect("CRUDActualite");
+				//ne pas laisser le framework continuer le traitement 
+				exit;
+				
+			}
+		}
+		else{
+				$this->site->ajouter_message("Accès administrateur");	
+				$this->site->redirect("index");
+			}
+
+	}
 		
 		public function action_supprimer()
 		{

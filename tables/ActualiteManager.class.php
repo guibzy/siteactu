@@ -79,9 +79,15 @@
 			$stmt->execute();
 		}
 		
-		public static function editerDonnees($id_article){
-			
-		
+		public static function modifier($actu){
+			$sql="UPDATE article SET Titre_Article=?, Date_Article=?,
+					Contenu_Article=?, ID_Utilisateur=?, 
+					ID_SousCategorie=? WHERE ID_Article=?";
+			$stmt=DB::get_instance()->prepare($sql);
+			$stmt->execute(array($actu->Titre_Article, $actu->Date_Article
+								, $actu->Contenu_Article, $actu->ID_Utilisateur
+								, $actu->ID_SousCategorie, $actu->ID_Article));
+			var_dump($actu);
 		}
 		
 		public static function creer($actu){
