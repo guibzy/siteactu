@@ -4,10 +4,80 @@ class AffichageArticles extends Module
 		public function action_index()
 		{
 			$data=array();
-			$data=ActualiteManager::listerParCat($this->req->num_cat);
+			
+			
 			$maCat=CatManager::chercherParId($this->req->num_cat);
+			if($this->session->search!="")
+			{
+				$data=ActualiteManager::rechercherParCat($this->session->search,$this->req->num_cat);
+				$this->session->search="";
+			}
+			else{
+				$data=ActualiteManager::listerParCat($this->req->num_cat);
+				}
+				
+				//construction d'un formulaire manuellement
+				//chaque champ est ajouté par appel de fonction
+				$fsearch=new Form("?module=AffichageArticles&action=searchvalide&num_cat=".$this->req->num_cat,"form2");
+
+				//construction sous forme de tableau
+				//chaque champ est déclaré sous la forme d'un tableau de paramètres
+				$fsearch->build_from_array(array(
+					array(
+							'type'=>'text',
+							'name'=>'recherche',
+							'id'=>'recherche',
+							'label'=>'Rechercher',
+							'validation'=>'required'
+						),
+					array(
+							'type'=>'submit',
+							'name'=>'sub',
+							'id'=>'sub',
+							'value'=>'Valider'
+						)
+				));
+
+					//passe le formulaire dans le template sous le nom "form"
+					
+					
+					//stocke la structure du formulaire dans la session sous le nom "form"
+					//pour une éventuelle réutilisation
+					$this->session->form = $fsearch;
+					$this->tpl->assign('fsearch',$fsearch);
+				
 			$this->set_title("Actualité ".$maCat['Nom_Categorie']);
 			$this->tpl->assign('data',$data);
+			
+		}
+		
+		public function action_searchvalide()
+		{
+			//on récupère la structure du formulaire précédemment stocké dans la session
+			$form=$this->session->form;
+			
+			$ok = $form->check();
+			
+			if(!$ok){ 
+				//re-remplir le forumulaire		
+				$form->populate();
+				//choisir d'afficher le template index (plutot que "valide")
+				//c'est une solution qui permet d'avoir un seul template pour les deux actions
+				$this->set_tpl_name("index");
+				//assigner le formulaire à la variable de template
+				$this->tpl->assign('fsearch',$form);			
+				
+			}else{
+				//traitement de recherche
+				
+				$this->session->search=$this->req->recherche;
+				
+				//rediriger vers une autre page
+				$this->site->redirect("AffichageArticles","index&num_cat=".$this->req->num_cat);
+				//ne pas laisser le framework continuer le traitement 
+				exit;
+				
+			}
 		}
 		
 		public function action_detail()

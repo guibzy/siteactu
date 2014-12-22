@@ -106,6 +106,4 @@ insert into activite VALUES
 	(null,"Informatique"),
 	(null,"Autres");
 
-insert into utilisateur VALUES (null,"bob","bobi","bob@mail.com",true,"010102 08:35:07","1");
-
-insert into article values(null,"Test","010102 09:05:47","Test insertion BD","3","1","1");
+insert into utilisateur VALUES (null,"admin",MD5("admin"),"admin@mail.com",true,"1994-07-31","1");

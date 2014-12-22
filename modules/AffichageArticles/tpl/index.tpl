@@ -1,4 +1,4 @@
-﻿
+﻿{$fsearch}
 <h2>Liste des articles</h2>
 
 	<table class='table table-striped'>

@@ -111,5 +111,31 @@
 		
 		}
 		
+		public static function rechercherParCat($recherche,$cat)
+		{
+				$sql="SELECT * from article,souscategorie WHERE article.ID_SousCategorie = souscategorie.ID_SousCategorie AND souscategorie.ID_Categorie=:cat AND ";
+				$t_termes=explode(" ",$recherche);
+				$tokens=array();
+				foreach($t_termes as $i => $t)
+				{
+					$cond[]="article.Titre_Article LIKE :t".$i." or article.Contenu_Article LIKE :t".$i;
+					$x=":t".$i;
+					$tokens[$x]="%".$t."%";
+					$cond_fin=implode(" or ",$cond);
+				}
+				$sql=$sql.$cond_fin." group by article.ID_Article";
+				$stmt = DB::get_instance()->prepare($sql);
+			
+				$stmt -> bindParam(':cat',$cat);
+				
+				foreach($tokens as $v => $u)
+				{
+					$stmt -> bindParam($v,$u);
+				}
+				$stmt -> execute();
+				$res_req=$stmt->fetchAll();	
+				
+			return $res_req;
+		}
 	}
 ?>
