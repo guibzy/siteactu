@@ -9,7 +9,7 @@ class Connexion extends Module{
 			$membre_auth=new Membre();
 			$membre_auth=MembreManager::chercherParLogin($this->req->Login);
 			
-			if($membre_auth->pass == $this->req->Pass)
+			if($membre_auth->pass == md5($this->req->Pass))
 			{	
 				$this->session->ouvrir($membre_auth); 
 				$this->tpl->assign('login',$this->req->Login);

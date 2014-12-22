@@ -20,5 +20,12 @@
 			return $res_req;
 			
 		}
+		
+		public static function supprimerParArt($id_article){
+			$sql="DELETE from commentaire WHERE ID_Article=:id";
+			$stmt=DB::get_instance()->prepare($sql);
+			$stmt->bindParam(':id', $id_article);
+			$stmt->execute();
+		}
 	}
 ?>

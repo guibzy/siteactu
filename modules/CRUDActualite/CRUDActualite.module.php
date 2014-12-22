@@ -290,6 +290,7 @@
 		{
 			if($this->session->user->redacteur==1)
 			{
+				CommentaireManager::supprimerParArt($this->req->id);
 				ActualiteManager::supprimer($this->req->id);
 				$this->site->ajouter_message("Article supprimé");	
 				$this->site->redirect("CRUDActualite","index");

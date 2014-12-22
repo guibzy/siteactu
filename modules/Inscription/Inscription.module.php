@@ -87,25 +87,34 @@ class Inscription extends Module{
 	public function action_valide(){
 		$this->site->effacer_messages();
 		$this->set_title("Inscription");
-		$err=false;
+		$err=true;
 		$form=$this->session->formulaire;
-		
-		$ok = $form->check();
+		$ok=1;
 		
 		$date_verif=explode("/",$this->req->daten);
-		var_dump($date_verif);
-		if(count($date_verif)==3)
+		$compte=count($date_verif);
+		if($compte==3)
 		 {
-			if($date_verif[0]<1905 or $date_verif[0]>2013)$ok=0;
-			if($date_verif[1]<0 or $date_verif[1]>12)$ok=0;
-			if($date_verif[1]<0 or $date_verif[1]>31)$ok=0;
-			
+			if($date_verif[0]<1905 OR $date_verif[0]>2013){
+				$err=false;
+				$raison="annee incorrecte";}
+			elseif($date_verif[1]<0 OR $date_verif[1]>12){
+				$err=false;
+				$raison="mois incorrecte";}
+			elseif($date_verif[2]<0 OR $date_verif[2]>31){
+				$err=false;
+				$raison="jour incorrecte";
+			}
+		}
+		 else{
+		 $raison="Veuillez préciez chaque champ";
+			 $err=false;
 		 }
-		 else{$ok=0;
-		 $this->req->daten="";}
-		 $this->site->ajouter_message('Date incorrecte : aaaa/mm/jj',ALERTE);
-		 
-		if(!$ok){
+
+		$ok = $form->check();
+		
+		if((!$ok) OR (!$err)){
+			if(!$err){$this->site->ajouter_message('Mauvaise date : '.$raison,ALERTE);}
 			$form->populate();
 			$this->set_tpl_name("index");
 			$this->tpl->assign('form',$form);
@@ -113,20 +122,18 @@ class Inscription extends Module{
 		}
 		else
 		{
-		$this->site->effacer_messages();
-		$date_ok=implode("-",$date_verif);
-		var_dump($date_ok);
-		$m=new Membre();
-		$m->login=$this->req->login;
-		$m->mail=$this->req->email;
-		$m->pass=$this->req->pass;
-		$m->redacteur=0;
-		$m->date_ne=$date_ok;
-		$m->code_act=$this->req->activite;
+			$this->site->effacer_messages();
+			$date_ok=implode("-",$date_verif);
+			$m=new Membre();
+			$m->login=$this->req->login;
+			$m->mail=$this->req->email;
+			$m->pass=md5($this->req->pass);
+			$m->redacteur=0;
+			$m->date_ne=$date_ok;
+			$m->code_act=$this->req->activite;
+			
+			MembreManager::creer($m);
 		
-		MembreManager::creer($m);
-	
-			$this->site->ajouter_message('Envoi des données pour l\'inscription.');
 			$this->site->redirect("inscription","confirme");
 			exit;
 		}
